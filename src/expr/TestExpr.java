@@ -12,7 +12,7 @@ public class TestExpr {
             System.out.println(expr.value(null));
            
             Expr B1 = new Variable("Hejsan");
-            expr = parser.build("A1*B1");
+            expr = parser.build("A1");
             System.out.println(expr.getClass().toString());
             Environment env = new Environment() {
                 public double value(String name) {

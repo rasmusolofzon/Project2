@@ -8,12 +8,15 @@ import expr.Environment;
 public class CellMatrix implements Environment {
 	private Map<String, Cell> matrix;
 	private String status;
+	private int row, cols;
 
 	public CellMatrix() {
 		this(10, 8);
 	}
 
 	public CellMatrix(int row, int cols) {
+		this.row = row;
+		this.cols = cols;
 		matrix = new HashMap<String, Cell>(row * cols);
 		for (char i = 'A'; i < cols + 'A'; i++) {
 			for (int j = 1; j <= row; j++) {
@@ -35,5 +38,6 @@ public class CellMatrix implements Environment {
 		return matrix.get(name).value(null); // <----- ska det vara null!??!?!
 		// TODO FEEEEL
 	}
+	
 
 }
