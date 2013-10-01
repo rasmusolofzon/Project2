@@ -7,6 +7,11 @@ public class BlankCell implements CellType {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public String getString(String content) {
+		return "";
+	}
 	
 	
 

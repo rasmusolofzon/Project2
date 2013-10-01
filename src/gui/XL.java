@@ -13,6 +13,8 @@ import java.awt.print.Printable;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.CellMatrix;
+
 
 public class XL extends JFrame implements Printable {
     private static final int ROWS = 10, COLUMNS = 8;
@@ -20,18 +22,18 @@ public class XL extends JFrame implements Printable {
     private StatusLabel statusLabel = new StatusLabel();
     private XLList xlList;
 
-    public XL(XL oldXL) {
-        this(oldXL.xlList, oldXL.counter);
+    public XL(XL oldXL, CellMatrix cells) {
+        this(oldXL.xlList, oldXL.counter, cells);
     }
 
-    public XL(XLList xlList, XLCounter counter) {
+    public XL(XLList xlList, XLCounter counter, CellMatrix cells) {
         super("Untitled-" + counter);
         this.xlList = xlList;
         this.counter = counter;
         xlList.add(this);
         counter.increment();
         JPanel statusPanel = new StatusPanel(statusLabel);
-        JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS);
+        JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS,cells);
         Editor editor = new Editor();
         add(NORTH, statusPanel);
         add(CENTER, editor);
@@ -58,6 +60,6 @@ public class XL extends JFrame implements Printable {
     }
 
     public static void main(String[] args) {
-        new XL(new XLList(), new XLCounter());
+        new XL(new XLList(), new XLCounter(), new CellMatrix());
     }
 }

@@ -4,7 +4,7 @@ import expr.Environment;
 import expr.Expr;
 
 public class Cell extends Expr {
-	private String name;
+	private String content;
 	private CellType type;
 
 	public void setType(CellType type) {
@@ -19,7 +19,11 @@ public class Cell extends Expr {
 
 	@Override
 	public double value(Environment env) {
-		return type.value(name);
+		return type.value(content);
+	}
+	
+	public String getString(){
+		return type.getString(content);
 	}
 
 }
