@@ -4,12 +4,15 @@ import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.NORTH;
 import static java.awt.BorderLayout.SOUTH;
 import gui.menu.XLMenuBar;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 public class XL extends JFrame implements Printable {
     private static final int ROWS = 10, COLUMNS = 8;

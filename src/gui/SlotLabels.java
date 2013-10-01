@@ -24,5 +24,6 @@ public class SlotLabels extends GridPanel {
         }
         SlotLabel firstLabel = labelList.get(0);
         firstLabel.setBackground(Color.YELLOW);
+        labelList.get(18).setBackground(Color.BLUE);
     }
 }
