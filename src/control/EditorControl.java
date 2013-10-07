@@ -10,12 +10,16 @@ import model.CellMatrix;
 public class EditorControl implements ActionListener {
 
 	private CellMatrix matrix;
+	private JTextField view;
+	
 	public EditorControl(CellMatrix matrix, JTextField view ){
+		this.matrix = matrix;
+		this.view = view;
+		view.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
+//		matrix.set("KEY",view.getText());
 	}
 
 }
