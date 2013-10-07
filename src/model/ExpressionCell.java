@@ -2,17 +2,16 @@ package model;
 
 import java.io.IOException;
 
+import util.NumberAdjustment;
 import util.XLException;
 import expr.*;
-
 
 public class ExpressionCell implements CellType {
 	private String text;
 	private static ExprParser parser = new ExprParser();
 	private Expr expr;
 	private double value;
-	
-	
+
 	public ExpressionCell(String string) {
 		text = string;
 	}
@@ -24,7 +23,6 @@ public class ExpressionCell implements CellType {
 
 	@Override
 	public double value(Environment env) {
-		// TODO helt fel tillbakaskick?!?!?!
 		try {
 			expr = parser.build(text);
 		} catch (IOException e) {
@@ -32,6 +30,12 @@ public class ExpressionCell implements CellType {
 		}
 		value = expr.value(env);
 		return value;
+	}
+
+	@Override
+	public String quickValue(Environment env) {
+		NumberAdjustment na = new NumberAdjustment(10, 2, 2);
+		return na.right(value);
 	}
 
 }

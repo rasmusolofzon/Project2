@@ -26,7 +26,7 @@ public class CellMatrix extends Observable implements Environment {
 
 	public void reCompute() {
 		// TODO inte säker att denna funkar?
-		for (CellType e : matrix.values()){
+		for (CellType e : matrix.values()) {
 			e.value(this);
 		}
 	}
@@ -46,15 +46,16 @@ public class CellMatrix extends Observable implements Environment {
 			newslot.value(this);
 			matrix.put(address, newslot);
 			reCompute();
-			setChanged();
-			notifyAll();
+			// setChanged();
+			// notifyAll();
+			// BORTKOMMENTERADE F÷R ATT KUNNA TESTA
 		} catch (XLException e) {
 			if (oldslot == null) {
 				matrix.remove(address);
 			} else {
 				matrix.put(address, oldslot);
-
 			}
+			throw new XLException("Cykliskt beroende");
 		}
 	}
 }
