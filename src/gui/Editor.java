@@ -11,15 +11,16 @@ import model.CellMatrix;
 public class Editor extends JTextField implements Observer {
 	private CellMatrix matrix;
 	
-    public Editor(CellMatrix matrix) {
+    public Editor(CellMatrix matrix,CurrentSlot currentSlot) {
         super();
     	this.matrix = matrix;
-    	//matrix.addObserver(this);
+    	currentSlot.addObserver(this);
     	
     	setBackground(Color.WHITE);
     }
     
     public void update(Observable observable, Object obj) {
-    	
+    	CurrentSlot currentSlot = (CurrentSlot) observable;
+//    	setText(currentSlot.getText());
     }
 }

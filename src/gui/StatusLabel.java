@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class StatusLabel extends ColoredLabel implements Observer {
+//	private 
     public StatusLabel() {
         super("", Color.WHITE);
     }

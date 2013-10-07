@@ -1,5 +1,6 @@
 package control;
 
+import gui.CurrentSlot;
 import gui.SlotLabel;
 import gui.SlotLabels;
 
@@ -12,23 +13,21 @@ import javax.swing.SwingUtilities;
 
 import model.CellMatrix;
 
-public class ControlSlotLabel implements MouseListener{
+public class SlotLabelControl implements MouseListener{
 
 	private CellMatrix matrix;
 	private SlotLabel view;
-	public ControlSlotLabel(CellMatrix matrix, SlotLabel view){
+	private CurrentSlot currentSlot;
+	public SlotLabelControl(CellMatrix matrix, SlotLabel view, CurrentSlot currentSlot){
 		this.matrix = matrix;
 		this.view = view;
+		this.currentSlot = currentSlot;
 		view.addMouseListener(this);
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		Container c = SwingUtilities.getAncestorOfClass(gui.SlotLabels.class,
-               view);
-		c = (SlotLabels) c;
-		((SlotLabels)c).setAllWhite();
-		view.setBackground(Color.BLACK);
-		
+		currentSlot.setCurrentSlot(view);
+//		view.setBackground(Color.BLACK);
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
