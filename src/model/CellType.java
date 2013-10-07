@@ -1,7 +1,11 @@
 package model;
 
+import expr.Environment;
+
 public interface CellType {
-	public double value(String value);
-	public String getString(String content);
+	public String toString();
+	public double value(Environment env);
+	
+	//TODO HEJ 
 
 }

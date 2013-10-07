@@ -1,17 +1,37 @@
 package model;
 
-public class ExpressionCell implements CellType {
+import java.io.IOException;
 
-	@Override
-	public double value(String value) {
-		// TODO Auto-generated method stub
-		return 0;
+import util.XLException;
+import expr.*;
+
+
+public class ExpressionCell implements CellType {
+	private String text;
+	private static ExprParser parser = new ExprParser();
+	private Expr expr;
+	private double value;
+	
+	
+	public ExpressionCell(String string) {
+		text = string;
 	}
 
 	@Override
-	public String getString(String content) {
-		// TODO return value pa nagot satt
-		return null;
+	public String toString() {
+		return text;
+	}
+
+	@Override
+	public double value(Environment env) {
+		// TODO helt fel tillbakaskick?!?!?!
+		try {
+			expr = parser.build(text);
+		} catch (IOException e) {
+			throw new XLException("Fel i parsning");
+		}
+		value = expr.value(env);
+		return value;
 	}
 
 }

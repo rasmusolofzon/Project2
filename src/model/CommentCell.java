@@ -1,16 +1,23 @@
 package model;
 
+import expr.Environment;
+
 public class CommentCell implements CellType {
+	private String text;
+	
+	public CommentCell(String string) {
+		text = string;
+	}
+
 
 	@Override
-	public double value(String value) {
-		return 0;
+	public String toString() {
+		return text;
 	}
 
 	@Override
-	public String getString(String content) {
-
-		return content;
+	public double value(Environment env) {
+		return 0;
 	}
 	
 	

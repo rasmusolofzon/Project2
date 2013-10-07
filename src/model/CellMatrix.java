@@ -2,27 +2,18 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
+import util.XLException;
 import expr.Environment;
 
-public class CellMatrix implements Environment {
-	private Map<String, Cell> matrix;
+public class CellMatrix extends Observable implements Environment {
+	private Map<String, CellType> matrix;
 	private String status;
-	private int row, cols;
 
 	public CellMatrix() {
-		this(10, 8);
-	}
 
-	public CellMatrix(int row, int cols) {
-		this.row = row;
-		this.cols = cols;
-		matrix = new HashMap<String, Cell>(row * cols);
-		for (char i = 'A'; i < cols + 'A'; i++) {
-			for (int j = 1; j <= row; j++) {
-				matrix.put(i + Integer.toString(j), new Cell());
-			}
-		}
+		matrix = new HashMap<String, CellType>();
 	}
 
 	public String getStatus() {
@@ -30,14 +21,40 @@ public class CellMatrix implements Environment {
 	}
 
 	public static void main(String[] args) {
-		new CellMatrix(10, 8);
+		new CellMatrix();
+	}
+
+	public void reCompute() {
+		// TODO inte säker att denna funkar?
+		for (CellType e : matrix.values()){
+			e.value(this);
+		}
 	}
 
 	@Override
 	public double value(String name) {
-		return matrix.get(name).value(null); // <----- ska det vara null!??!?!
-		// TODO FEEEEL
+		// TODO fel returnvärde?
+		return matrix.get(name).value(this);
 	}
-	
 
+	public void set(String address, String string) {
+		CellType oldslot, newslot;
+		oldslot = matrix.get(address);
+		try {
+			newslot = CellFactory.build(string);
+			matrix.put(address, new CircularCell());
+			newslot.value(this);
+			matrix.put(address, newslot);
+			reCompute();
+			setChanged();
+			notifyAll();
+		} catch (XLException e) {
+			if (oldslot == null) {
+				matrix.remove(address);
+			} else {
+				matrix.put(address, oldslot);
+
+			}
+		}
+	}
 }
