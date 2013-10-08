@@ -58,4 +58,12 @@ public class CellMatrix extends Observable implements Environment {
 			throw new XLException("Cykliskt beroende");
 		}
 	}
+
+	public String getValue(String adress) {
+		return matrix.get(adress).quickValue(this);
+	}
+
+	public String getText(String adress) {
+		return matrix.get(adress).toString();
+	}
 }
