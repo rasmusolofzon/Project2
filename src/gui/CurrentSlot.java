@@ -26,6 +26,9 @@ public class CurrentSlot extends Observable {
 	}
 	public void initiate(SlotLabel currentSlot){
 		this.currentSlot = currentSlot;
+		currentSlot.setBackground(Color.YELLOW);
+		setChanged();
+		notifyObservers();
 	}
 
 	public String getAddress() {
