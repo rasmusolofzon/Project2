@@ -34,7 +34,7 @@ public class ExpressionCell implements CellType {
 
 	@Override
 	public String quickValue(Environment env) {
-		NumberAdjustment na = new NumberAdjustment(10, 2, 2);
+		NumberAdjustment na = new NumberAdjustment(10, 2, 0);
 		return na.right(value);
 	}
 
