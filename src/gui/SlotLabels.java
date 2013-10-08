@@ -19,6 +19,7 @@ public class SlotLabels extends GridPanel implements Observer{
     public SlotLabels(int rows, int cols, CellMatrix matrix,CurrentSlot currentSlot) {
         super(rows + 1, cols);
         this.matrix = matrix;
+        matrix.addObserver(this);
         this.currentSlot = currentSlot;
         labelList = new ArrayList<SlotLabel>(rows * cols);
         for (char ch = 'A'; ch < 'A' + cols; ch++) {
@@ -37,14 +38,6 @@ public class SlotLabels extends GridPanel implements Observer{
         currentSlot.initiate(labelList.get(0));
     }
 
-    public void setCurrent(SlotLabel label){
-//    	currentLabel = label;
-    }
-    public void setAllWhite(){
-    	for(SlotLabel e : labelList){
-    		e.setBackground(Color.WHITE);
-    	}
-    }
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		for(SlotLabel slot : labelList){

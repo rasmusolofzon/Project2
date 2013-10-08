@@ -25,7 +25,7 @@ public class CellMatrix extends Observable implements Environment {
 	}
 
 	public void reCompute() {
-		// TODO inte sŠker att denna funkar?
+		// TODO inte sï¿½ker att denna funkar?
 		for (CellType e : matrix.values()) {
 			e.value(this);
 		}
@@ -33,7 +33,7 @@ public class CellMatrix extends Observable implements Environment {
 
 	@Override
 	public double value(String name) {
-		// TODO fel returnvŠrde?
+		// TODO fel returnvï¿½rde?
 		return matrix.get(name).value(this);
 	}
 
@@ -46,9 +46,8 @@ public class CellMatrix extends Observable implements Environment {
 			newslot.value(this);
 			matrix.put(address, newslot);
 			reCompute();
-			// setChanged();
-			// notifyAll();
-			// BORTKOMMENTERADE FÖR ATT KUNNA TESTA
+			setChanged();
+			notifyObservers();
 		} catch (XLException e) {
 			if (oldslot == null) {
 				matrix.remove(address);
@@ -59,11 +58,19 @@ public class CellMatrix extends Observable implements Environment {
 		}
 	}
 
-	public String getValue(String adress) {
-		return matrix.get(adress).quickValue(this);
+	public String getValue(String address) {
+		if(matrix.containsKey(address)){
+			return matrix.get(address).quickValue(this);
+		}
+		else
+			return "";
 	}
 
-	public String getText(String adress) {
-		return matrix.get(adress).toString();
+	public String getText(String address) {
+		if(matrix.containsKey(address)){
+			return matrix.get(address).toString();
+		}
+		else
+			return "";
 	}
 }

@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.CellMatrix;
+import control.EditorControl;
 
 
 public class XL extends JFrame implements Printable {
@@ -33,10 +34,12 @@ public class XL extends JFrame implements Printable {
         this.counter = counter;
         this.currentSlot = new CurrentSlot(matrix);
         xlList.add(this);
+        
         counter.increment();
         JPanel statusPanel = new StatusPanel(statusLabel, currentSlot);
         JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS,matrix, currentSlot);
         Editor editor = new Editor(matrix, currentSlot );
+        new EditorControl(matrix, editor);
         add(NORTH, statusPanel);
         add(CENTER, editor);
         add(SOUTH, sheetPanel);
