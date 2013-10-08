@@ -20,10 +20,6 @@ public class CellMatrix extends Observable implements Environment {
 		return status;
 	}
 
-	public static void main(String[] args) {
-		new CellMatrix();
-	}
-
 	public void reCompute() {
 		// TODO inte s�ker att denna funkar?
 		for (CellType e : matrix.values()) {
@@ -32,9 +28,13 @@ public class CellMatrix extends Observable implements Environment {
 	}
 
 	@Override
-	public double value(String name) {
-		// TODO fel returnv�rde?
-		return matrix.get(name).value(this);
+	public double value(String address) {
+		if(matrix.containsKey(address)){
+			return matrix.get(address).value(this);
+		}
+		else{
+			throw new XLException("Felaktigt uttryck");
+		}
 	}
 
 	public void set(String address, String string) {

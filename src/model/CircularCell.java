@@ -12,8 +12,10 @@ public class CircularCell implements CellType {
 
 	@Override
 	public String quickValue(Environment env) {
-		// TODO Auto-generated method stub
-		return null;
+		return "SKa inte sysnas";
+	}
+	public String toString(){
+		return "AJAJAJ";
 	}
 
 }

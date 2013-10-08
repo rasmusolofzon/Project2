@@ -22,12 +22,9 @@ public class CommentCell implements CellType {
 
 	@Override
 	public String quickValue(Environment env) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < 11; i++) {
-			sb.append(text.charAt(i));
-		}
+		text = text.substring(1);
 		Adjustment adj = new Adjustment(10);
-		return adj.left(sb.toString());
+		return adj.left(text);
 	}
 
 }
