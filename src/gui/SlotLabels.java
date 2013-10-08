@@ -47,7 +47,8 @@ public class SlotLabels extends GridPanel implements Observer{
     }
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		for(SlotLabel slot : labelList){
+			slot.setText(matrix.getValue(slot.getAddress()));
+		}
 	}
 }

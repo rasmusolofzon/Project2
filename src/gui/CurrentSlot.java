@@ -6,7 +6,6 @@ import java.util.Observable;
 import model.CellMatrix;
 
 public class CurrentSlot extends Observable {
-	private String text;
 	private CellMatrix matrix;
 	private SlotLabel currentSlot;
 
@@ -29,8 +28,8 @@ public class CurrentSlot extends Observable {
 		this.currentSlot = currentSlot;
 	}
 
-	public String getText() {
-		return text;
+	public String getAddress() {
+		return currentSlot.getAddress();
 	}
 
 }
