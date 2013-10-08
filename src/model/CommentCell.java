@@ -22,9 +22,8 @@ public class CommentCell implements CellType {
 
 	@Override
 	public String quickValue(Environment env) {
-		text = text.substring(1);
 		Adjustment adj = new Adjustment(10);
-		return adj.left(text);
+		return adj.left(text.substring(1));
 	}
 
 }
