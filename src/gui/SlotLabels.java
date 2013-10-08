@@ -9,16 +9,17 @@ import java.util.Observer;
 import javax.swing.SwingConstants;
 
 import model.CellMatrix;
-import control.ControlSlotLabel;
+import control.SlotLabelControl;
 
 public class SlotLabels extends GridPanel implements Observer{
     private List<SlotLabel> labelList;
     private CellMatrix matrix;
-    private SlotLabel currentLabel;
+    private CurrentSlot currentSlot;
 
-    public SlotLabels(int rows, int cols, CellMatrix matrix) {
+    public SlotLabels(int rows, int cols, CellMatrix matrix,CurrentSlot currentSlot) {
         super(rows + 1, cols);
         this.matrix = matrix;
+        this.currentSlot = currentSlot;
         labelList = new ArrayList<SlotLabel>(rows * cols);
         for (char ch = 'A'; ch < 'A' + cols; ch++) {
             add(new ColoredLabel(Character.toString(ch), Color.LIGHT_GRAY,
@@ -26,24 +27,23 @@ public class SlotLabels extends GridPanel implements Observer{
         }
         for (int row = 1; row <= rows; row++) {
             for (char ch = 'A'; ch < 'A' + cols; ch++) {
-                SlotLabel label = new SlotLabel();
+                SlotLabel label = new SlotLabel(ch+Integer.toString(row));
                 add(label);
                 labelList.add(label);
-                new ControlSlotLabel(matrix,label);
+                new SlotLabelControl(matrix,label, currentSlot);
             }
         }
-        SlotLabel firstLabel = labelList.get(0);
-        firstLabel.setBackground(Color.YELLOW);
+        
+        currentSlot.initiate(labelList.get(0));
     }
 
     public void setCurrent(SlotLabel label){
-    	currentLabel = label;
+//    	currentLabel = label;
     }
     public void setAllWhite(){
     	for(SlotLabel e : labelList){
     		e.setBackground(Color.WHITE);
     	}
-    	
     }
 	@Override
 	public void update(Observable arg0, Object arg1) {

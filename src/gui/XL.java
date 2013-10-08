@@ -21,6 +21,7 @@ public class XL extends JFrame implements Printable {
     private XLCounter counter;
     private StatusLabel statusLabel = new StatusLabel();
     private XLList xlList;
+    private CurrentSlot currentSlot;
 
     public XL(XL oldXL, CellMatrix cells) {
         this(oldXL.xlList, oldXL.counter, cells);
@@ -30,11 +31,12 @@ public class XL extends JFrame implements Printable {
         super("Untitled-" + counter);
         this.xlList = xlList;
         this.counter = counter;
+        this.currentSlot = new CurrentSlot(matrix);
         xlList.add(this);
         counter.increment();
-        JPanel statusPanel = new StatusPanel(statusLabel);
-        JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS,matrix);
-        Editor editor = new Editor(matrix);
+        JPanel statusPanel = new StatusPanel(statusLabel, currentSlot);
+        JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS,matrix, currentSlot);
+        Editor editor = new Editor(matrix, currentSlot );
         add(NORTH, statusPanel);
         add(CENTER, editor);
         add(SOUTH, sheetPanel);

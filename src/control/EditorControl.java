@@ -19,7 +19,7 @@ public class EditorControl implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-//		matrix.set("KEY",view.getText());
+		matrix.set("KEY",view.getText()); //TODO
 	}
 
 }
