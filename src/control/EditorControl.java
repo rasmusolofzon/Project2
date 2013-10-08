@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.CellMatrix;
+import util.XLException;
 
 public class EditorControl implements ActionListener {
 
@@ -19,7 +20,12 @@ public class EditorControl implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		matrix.set(view.getAddress(),view.getText());
+		try{
+			matrix.set(view.getAddress(),view.getText());
+		}
+		catch (XLException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

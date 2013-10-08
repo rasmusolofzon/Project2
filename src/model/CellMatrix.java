@@ -54,8 +54,8 @@ public class CellMatrix extends Observable implements Environment {
 			} else {
 				matrix.put(address, oldslot);
 			}
-			throw new XLException("Cykliskt beroende");
-		}
+			throw new XLException(e.getMessage());
+		} 
 	}
 
 	public String getValue(String address) {
